@@ -263,9 +263,9 @@ function ContinuePlaylist() {
 }
 
 function ShufflePlaylist() {
-        do {
+        while (OSTsPreviousIndex == OSTsIndex) {
             OSTsIndex = Math.floor(Math.random() * OSTs.length);
-        } while (OSTsPreviousIndex == OSTsIndex);
+        }
         OSTsPreviousIndex = OSTsIndex;
         Music.setAttribute('src', "Tracks/" + OSTs[OSTsIndex] + '.mp3');
         Music.play();
