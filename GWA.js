@@ -1,13 +1,23 @@
 var Music = document.getElementById('AudioPlayer');
 var ProgressBar = document.getElementById('SongProgress');
-var OSTs = ["Echoes Of The Salvific Ocean Depths", "As Darkness Overshadows Light"];
+var NameOfSong = document.getElementById('NameOfSong');
+var OSTs = ["After The Long Voyage", 
+			"Crystalline Hollow", 
+			"Harrowing Land Of Solitude", 
+			"Thus Envelops The Night", 
+			"The Will Of The Weak", 
+			"Embrace The Movement", 
+			"A Dance With Radiant Light", 
+			"Umbral Showdown", 
+			"Echoes Of The Salvific Ocean Depths", 
+			"As Darkness Overshadows Light"];
 var Extentions = [".png" , ".gif"];
 var IconState = "play";
 var MusicVolume = "volume";
 var OptionSelected = 'none';
 var Progress = 0;
 var OSTsIndex = 0;
-var OSTsPreviousIndex = -999;
+var OSTsPreviousIndex = 0;
 
 Music.addEventListener( 'timeupdate' , GetMusicProgress , false );
 Music.addEventListener('ended', ExecuteOption, false);
@@ -226,6 +236,20 @@ function PreviousMusic() {
 
 function UpdateMusic() {
     Music.setAttribute('src', "Tracks/" + OSTs[OSTsIndex] + '.mp3');
+	NameOfSong.innerHTML = "-= " + OSTs[OSTsIndex] + " =-";
+	if (IconState == "pause") {
+		Music.play();
+	}
+	else {
+		Music.pause();
+		GetMusicProgress();
+	}
+	
+}
+
+function UpdateMusicByIndex(MusicIndex) {
+    Music.setAttribute('src', "Tracks/" + OSTs[MusicIndex] + '.mp3');
+	NameOfSong.innerHTML = "-= " + OSTs[MusicIndex] + " =-";
 	if (IconState == "pause") {
 		Music.play();
 	}
@@ -241,32 +265,34 @@ function MuteMusic() {
 }
 
 function ExecuteOption() {
-        if (OptionSelected == 'loop') {
-            LoopMusic();
-        }
-		else if (OptionSelected == 'playlist') {
-            ContinuePlaylist();
-        }
-		else if (OptionSelected == 'shuffle') {
-            ShufflePlaylist();
-        } 
+    if (OptionSelected == 'loop') {
+        LoopMusic();
+    }
+	else if (OptionSelected == 'playlist') {
+        ContinuePlaylist();
+    }
+	else if (OptionSelected == 'shuffle') {
+        ShufflePlaylist();
+    } 
 }
 
 function LoopMusic() {
-        Music.play();
+    Music.play();
 }
 
 function ContinuePlaylist() {
-        OSTsIndex = (OSTsIndex - 1 + OSTs.length) % OSTs.length;
-        Music.setAttribute('src', "Tracks/" + OSTs[OSTsIndex] + '.mp3');
-        Music.play();
+    OSTsIndex = (OSTsIndex + 1) % OSTs.length;
+    Music.setAttribute('src', "Tracks/" + OSTs[OSTsIndex] + '.mp3');
+	NameOfSong.innerHTML = "-= " + OSTs[OSTsIndex] + " =-";
+    Music.play();
 }
 
 function ShufflePlaylist() {
-        while (OSTsPreviousIndex == OSTsIndex) {
-            OSTsIndex = Math.floor(Math.random() * OSTs.length);
-        }
-        OSTsPreviousIndex = OSTsIndex;
-        Music.setAttribute('src', "Tracks/" + OSTs[OSTsIndex] + '.mp3');
-        Music.play();
+    while (OSTsPreviousIndex == OSTsIndex) {
+        OSTsIndex = Math.floor(Math.random() * OSTs.length);
+    }
+    OSTsPreviousIndex = OSTsIndex;
+    Music.setAttribute('src', "Tracks/" + OSTs[OSTsIndex] + '.mp3');
+	NameOfSong.innerHTML = "-= " + OSTs[OSTsIndex] + " =-";
+    Music.play();
 }
