@@ -8,20 +8,20 @@
 html {
     scroll-behavior: smooth;
 }
-h1, h2 {
+h1, h3 {
     font-weight: normal;
     font-family: "Century Gothic";
+	color: lightblue;
     margin: 10px;
     padding: 10px;
 	transform: scalex(1.5);
 }
-p {
-	color: white;
-}
 .JadContentStyle {
     font-family: "Century Gothic";
-    color: lightblue;
     padding: 0;
+	color: white;
+	text-align: center;
+	font-size: 20px;
     margin-left: 10%;
     margin-right: 10%;
 }
@@ -120,8 +120,16 @@ button:hover {
     height: 10px;
     background: #786F80;
     border-radius: 5px;
-	overflow: hidden;
     margin-top: 10px;
+	overflow: hidden;
+}
+#SongTimeline p {
+	font-size: 7.5px;
+	transform-origin: left;
+	transform: scalex(2.5);
+	position: absolute;
+	text-shadow: 0 0 5px black;
+	overflow: hidden;
 }
 #SongProgress {
     height: 100%;
@@ -153,6 +161,9 @@ button:hover {
     place-items: center;
 	margin: 10px 0 10px 0;
 }
+#CharacterChart {
+	margin: 10px 0 10px 0;
+}
 #Playlist { 
 	background-color: rgba(0, 0, 0, 0.5); 
 	border-radius: 20px;
@@ -162,6 +173,7 @@ button:hover {
 	margin: 10px 0 10px 0;
 }
 #PlaylistContainer {
+	background-color: rgba(72, 67, 77, 0.8);
     display: flex;
     flex-direction: column;
     width: 85%;
@@ -178,10 +190,37 @@ button:hover {
     align-items: center;
     justify-content: center;
     font-size: 20px;
+    position: relative;
 }
 .MusicSegment:hover {
-	background-color: rgba(120, 111, 128, 1);
-    height: 150px;
-    font-size: 40px;
+    transform: translateX(-5%);
+    background-color: rgba(120, 111, 128, 1);
+    height: 75px;
+    color: lightblue;
+    font-size: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.MusicTitle {
+    position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+    transition: left 0.6s ease-in-out, transform 0.6s ease-in-out;
+}
+.MusicDescription {
+    position: absolute;
+    bottom: 0px;
+    right: 20px;
+    width: auto;
+    color: white;
+    font-size: 20px;
+    opacity: 0;
+    transition: all 0.6s ease-in-out;
+}
+.MusicSegment:hover .MusicTitle {
+    left: 20px;
+	transform: translateX(0);
+}
+.MusicSegment:hover .MusicDescription {
+    bottom: 22.5px;
+    opacity: 1;
 }
