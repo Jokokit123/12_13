@@ -11,10 +11,16 @@ html {
 h1, h3 {
     font-weight: normal;
     font-family: "Century Gothic";
-	color: lightblue;
     margin: 10px;
     padding: 10px;
 	transform: scalex(1.5);
+	text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+h1 {
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+	background-color: rgba(0, 0, 0, 0.2);
+	border-radius: 20px;
+	color: lightblue;
 }
 .JadContentStyle {
     font-family: "Century Gothic";
@@ -164,6 +170,41 @@ button:hover {
 #CharacterChart {
 	margin: 10px 0 10px 0;
 }
+.ChartRows {
+	display: flex;
+	justify-content: center;
+}
+.Characters {
+	background-color: rgba(120, 111, 128, 0.8);
+	border-radius: 20px;
+	padding: 15px 15px 0 15px;
+	margin: 25px 75px 25px 75px;
+	filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+.CharacterIcons {
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+	transition: all 0.6s ease-in-out;
+}
+.Sprites {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+	opacity: 0;
+	transform: translate(-50%, -75%);
+	transition: all 0.6s ease-in-out;
+	z-index: 2;
+}
+#Jad:hover .CharacterIcons {
+	transform: translateY(-5%);
+    filter: brightness(0.5);
+	box-shadow: 0 4px 8px lightblue;
+}
+#Jad:hover .Sprites {
+	transform: translate(-50%, -125%);
+	filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    opacity: 1;
+}
 #Playlist { 
 	background-color: rgba(0, 0, 0, 0.5); 
 	border-radius: 20px;
@@ -177,7 +218,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     width: 85%;
-    margin: 50px auto;
+    margin: 75px auto;
 }
 .MusicSegment {
     background-color: rgba(120, 111, 128, 0.8);
