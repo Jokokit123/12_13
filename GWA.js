@@ -1,3 +1,5 @@
+var JadIcon = document.getElementById('JadIcon');
+var JadSprite = document.getElementById('JadSprite');
 var Music = document.getElementById('AudioPlayer');
 var ProgressBar = document.getElementById('SongProgress');
 var NameOfSong = document.getElementById('NameOfSong');
@@ -11,13 +13,18 @@ var OSTs = ["After The Long Voyage",
 			"Umbral Showdown", 
 			"Echoes Of The Salvific Ocean Depths", 
 			"As Darkness Overshadows Light"];
-var Extentions = [".png" , ".gif"];
+var Extensions = [".png" , ".gif"];
 var IconState = "play";
+var SpriteState = "JadF";
 var MusicVolume = "volume";
 var OptionSelected = 'none';
 var Progress = 0;
 var OSTsIndex = 0;
 var OSTsPreviousIndex = 0;
+var EasterEgg = true;
+var FirstMove = true;
+var x = -25, y = -125;
+const Step = 100;
 
 Music.addEventListener( 'timeupdate' , GetMusicProgress , false );
 Music.addEventListener('ended', ExecuteOption, false);
@@ -29,17 +36,17 @@ document.addEventListener('DOMContentLoaded', function () {
 	PlayPauseIcon.addEventListener('click', SwitchState, false);
 	Music.addEventListener('ended', SwitchStateCondition, false);
     function SwitchToGif() {
-        PlayPauseIcon.setAttribute("src", "Icons/" + IconState + Extentions[1]);
+        PlayPauseIcon.setAttribute("src", "Icons/" + IconState + Exensions[1]);
     }
 	function SwitchToPng() {
-        PlayPauseIcon.setAttribute("src", "Icons/" + IconState + Extentions[0]);
+        PlayPauseIcon.setAttribute("src", "Icons/" + IconState + Extensions[0]);
     }
 	function SwitchState() {
 		if (IconState == "play") 
 			IconState = "pause";
 		else
 			IconState = "play";
-		PlayPauseIcon.setAttribute("src", "Icons/" + IconState + Extentions[0]);
+		PlayPauseIcon.setAttribute("src", "Icons/" + IconState + Extensions[0]);
     }
 	function SwitchStateCondition() {
 		if (OptionSelected == 'none') {
@@ -54,10 +61,10 @@ document.addEventListener('DOMContentLoaded', function () {
     ForwardIcon.addEventListener('mouseout', SwitchToPng, false);
 	ForwardIcon.addEventListener('click', UpdateMusic, false);
     function SwitchToGif() {
-        ForwardIcon.setAttribute("src", "Icons/forward" + Extentions[1]);
+        ForwardIcon.setAttribute("src", "Icons/forward" + Extensions[1]);
     }
 	function SwitchToPng() {
-        ForwardIcon.setAttribute("src", "Icons/forward" + Extentions[0]);
+        ForwardIcon.setAttribute("src", "Icons/forward" + Extensions[0]);
     }
 });
 
@@ -67,10 +74,10 @@ document.addEventListener('DOMContentLoaded', function () {
     BackwardIcon.addEventListener('mouseout', SwitchToPng, false);
 	BackwardIcon.addEventListener('click', UpdateMusic, false);
     function SwitchToGif() {
-        BackwardIcon.setAttribute("src", "Icons/backward" + Extentions[1]);
+        BackwardIcon.setAttribute("src", "Icons/backward" + Extensions[1]);
     }
 	function SwitchToPng() {
-        BackwardIcon.setAttribute("src", "Icons/backward" + Extentions[0]);
+        BackwardIcon.setAttribute("src", "Icons/backward" + Extensions[0]);
     }
 });
 
@@ -80,17 +87,17 @@ document.addEventListener('DOMContentLoaded', function () {
     VolumeIcon.addEventListener('mouseout', SwitchToPng, false);
 	VolumeIcon.addEventListener('click', SwitchState, false);
     function SwitchToGif() {
-        VolumeIcon.setAttribute("src", "Icons/" + MusicVolume + Extentions[1]);
+        VolumeIcon.setAttribute("src", "Icons/" + MusicVolume + Extensions[1]);
     }
 	function SwitchToPng() {
-        VolumeIcon.setAttribute("src", "Icons/" + MusicVolume + Extentions[0]);
+        VolumeIcon.setAttribute("src", "Icons/" + MusicVolume + Extensions[0]);
     }
 	function SwitchState() {
 		if (MusicVolume == "volume") 
 			MusicVolume = "mute";
 		else
 			MusicVolume = "volume";
-		VolumeIcon.setAttribute("src", "Icons/" + MusicVolume + Extentions[0]);
+		VolumeIcon.setAttribute("src", "Icons/" + MusicVolume + Extensions[0]);
     }
 });
 
@@ -183,28 +190,28 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 	
 	function SwitchSettingsToGif() {
-        SettingsIcon.setAttribute("src", "Icons/settings" + Extentions[1]);
+        SettingsIcon.setAttribute("src", "Icons/settings" + Extensions[1]);
     }
 	function SwitchSettingsToPng() {
-        SettingsIcon.setAttribute("src", "Icons/settings" + Extentions[0]);
+        SettingsIcon.setAttribute("src", "Icons/settings" + Extensions[0]);
     }
     function SwitchLoopToGif() {
-        LoopIcon.setAttribute("src", "Icons/loop"	+ Extentions[1]);
+        LoopIcon.setAttribute("src", "Icons/loop"	+ Extensions[1]);
     }
 	function SwitchLoopToPng() {
-        LoopIcon.setAttribute("src", "Icons/loop" + Extentions[0]);
+        LoopIcon.setAttribute("src", "Icons/loop" + Extensions[0]);
     }
 	function SwitchPlaylistToGif() {
-        PlaylistIcon.setAttribute("src", "Icons/playlist" + Extentions[1]);
+        PlaylistIcon.setAttribute("src", "Icons/playlist" + Extensions[1]);
     }
 	function SwitchPlaylistToPng() {
-        PlaylistIcon.setAttribute("src", "Icons/playlist" + Extentions[0]);
+        PlaylistIcon.setAttribute("src", "Icons/playlist" + Extensions[0]);
     }
 	function SwitchShuffleToGif() {
-        ShuffleIcon.setAttribute("src", "Icons/shuffle" + Extentions[1]);
+        ShuffleIcon.setAttribute("src", "Icons/shuffle" + Extensions[1]);
     }
 	function SwitchShuffleToPng() {
-        ShuffleIcon.setAttribute("src", "Icons/shuffle" + Extentions[0]);
+        ShuffleIcon.setAttribute("src", "Icons/shuffle" + Extensions[0]);
     }
 });
 
@@ -295,4 +302,65 @@ function ShufflePlaylist() {
     Music.setAttribute('src', "Tracks/" + OSTs[OSTsIndex] + '.mp3');
 	NameOfSong.innerHTML = "-= " + OSTs[OSTsIndex] + " =-";
     Music.play();
+}
+
+function ActivateEasterEgg() {
+	if (EasterEgg) {
+		EasterEgg = false;
+		JadIcon.classList.add('IconActive');
+		JadSprite.classList.add('SpriteActive');
+		document.body.classList.add('CorruptionEffect');
+		document.body.classList.remove('Background');
+		document.body.style.overflow = "hidden";
+	}
+    EnableSpriteControl();
+}
+
+function EnableSpriteControl() {
+	document.addEventListener('keyup', (event) => {
+		const key = event.key.toLowerCase();
+		SpriteMovement(key); 
+	});
+}
+
+function SpriteMovement(key) {
+    if (key === "w") { 
+		SpriteState = "JadB"; 
+	}
+    else if (key === "s") { 
+		SpriteState = "JadF"; 
+	}
+    else if (key === "a") {
+		SpriteState = "JadL"; 
+	}
+    else if (key === "d") { 
+		SpriteState = "JadR"; 
+	}
+
+    if (JadSprite.getAttribute("src") !== `Sprites/${SpriteState}${Extensions[1]}`) {
+        JadSprite.setAttribute("src", "Sprites/" + SpriteState + Extensions[1]);
+    }
+	
+    if (key === "w") {
+		y -= Step; 
+	}
+    else if (key === "s") {
+		y += Step; 
+	}
+    else if (key === "a" ) {
+		x -= Step; 
+	}
+    else if (key === "d") { 
+		x += Step; 
+	}
+	
+    JadSprite.style.transform = `translate(${x}px, ${y}px)`;
+	
+    if (FirstMove) {
+        FirstMove = false;
+        document.body.classList.remove('CorruptionEffect');
+        document.body.classList.add('Background');
+        document.body.style.overflow = "";
+		JadIcon.classList.remove('IconActive');
+    }
 }
