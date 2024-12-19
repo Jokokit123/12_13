@@ -12,7 +12,9 @@ var OSTs = ["After The Long Voyage",
 			"A Dance With Radiant Light", 
 			"Umbral Showdown", 
 			"Echoes Of The Salvific Ocean Depths", 
-			"As Darkness Overshadows Light"];
+			"As Darkness Overshadows Light",
+			"A Stance of Righteous Conviction",
+			"Soar To Broader Horrizons"];
 var Extensions = [".png" , ".gif"];
 var IconState = "play";
 var SpriteState = "JadF";
@@ -36,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	PlayPauseIcon.addEventListener('click', SwitchState, false);
 	Music.addEventListener('ended', SwitchStateCondition, false);
     function SwitchToGif() {
-        PlayPauseIcon.setAttribute("src", "Icons/" + IconState + Exensions[1]);
+        PlayPauseIcon.setAttribute("src", "Icons/" + IconState + Extensions[1]);
     }
 	function SwitchToPng() {
         PlayPauseIcon.setAttribute("src", "Icons/" + IconState + Extensions[0]);
