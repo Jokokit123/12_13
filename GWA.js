@@ -14,7 +14,7 @@ var OSTs = ["After The Long Voyage",
 			"Echoes Of The Salvific Ocean Depths", 
 			"As Darkness Overshadows Light",
 			"A Stance of Righteous Conviction",
-			"Soar To Broader Horrizons"];
+			"Soar To Broader Horizons"];
 var Extensions = [".png" , ".gif"];
 var IconState = "play";
 var SpriteState = "JadF";
