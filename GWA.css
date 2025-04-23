@@ -49,10 +49,10 @@ h1 {
     background-color: rgba(0, 0, 0, 0.5);
 }
 @keyframes DayNightCycle {
-    0% { background-image: url('MAP1.png'); }
-    35% { background-image: url('MAP2.png'); }
-    70% { background-image: url('MAP3.png'); }
-    100% { background-image: url('MAP4.png'); }
+    0% { background-image: url('BG1.jpg'); }
+    35% { background-image: url('BG2.jpg'); }
+    70% { background-image: url('BG3.jpg'); }
+    100% { background-image: url('BG4.jpg'); }
 }
 .Background {
     position: relative;
@@ -73,19 +73,22 @@ h1 {
     z-index: -1;
 }
 #NavigationBar {
-	width: 100%;
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
     position: sticky;
     top: 0;
     padding: 10px;
     z-index: 10;
-    display: flex;
     justify-content: space-between;
     align-items: center;
 }
 #NavigationBar .Left, #NavigationBar .Right {
     display: flex;
+    align-items: center;
+}
+#NavigationBar .Top, .Bottom { 
+	display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 #NavigationBar .Left {
@@ -126,45 +129,7 @@ button {
 button:hover {
 	filter: drop-shadow(0 0 10px lightblue) drop-shadow(0 0 5px lightblue) brightness(3.5) saturate(2);
 }
-#SettingsList {
-    position: relative;
-    display: inline-block;
-}
-.SettingsOptionsClass {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 40px;
-    background-color: rgba(72, 67, 77, 0.8);
-    border-radius: 10px;
-    padding: 10px;
-    z-index: 10;
-    overflow: hidden;
-    transition: height 0.3s ease;
-}
-#SongTimeline {
-    width: 90%;
-    height: 10px;
-    background: #786F80;
-    border-radius: 5px;
-    margin-top: 10px;
-	overflow: hidden;
-}
-#SongTimeline p {
-	font-size: 7.5px;
-	transform-origin: left;
-	transform: scalex(2.5);
-	position: absolute;
-	text-shadow: 0 0 5px black;
-	overflow: hidden;
-}
-#SongProgress {
-    height: 100%;
-    width: 0%;
-    background-color: lightblue;
-    transition: width 0.5s ease;
-}
-#Synopsis { 
+#OurCompany { 
 	background-color: rgba(0, 0, 0, 0.5); 
 	border-radius: 20px;
 	width: 100%;
@@ -172,7 +137,7 @@ button:hover {
     place-items: center;
 	margin-bottom: 10px;
 }
-#Structure { 
+#OurProduct { 
 	background-color: rgba(0, 0, 0, 0.5); 
 	border-radius: 20px;
 	width: 100%;
@@ -254,13 +219,20 @@ button:hover {
     height: 100%;
     background-color: lightblue;
 }
-#CharacterInfo { 
+#SourceCode { 
 	background-color: rgba(0, 0, 0, 0.5); 
 	border-radius: 20px;
 	width: 100%;
 	display: grid;
     place-items: center;
 	margin: 10px 0 10px 0;
+}
+#SourceCodeSegment {
+	width: 85%;
+	height: 500px;
+	overflow-y: scroll;
+	margin-bottom: 25px;
+	background-color: rgb(72, 67, 77);
 }
 #CharacterChart {
 	margin: 10px 0 10px 0;
@@ -304,18 +276,12 @@ button:hover {
 	transform: translate(-50%, -125%);
 	transition: all 0.2s ease-in-out;
 }
-#Playlist { 
+#ContactUs { 
 	background-color: rgba(0, 0, 0, 0.5); 
 	border-radius: 20px;
 	width: 100%;
 	display: grid;
     place-items: center;
-	margin: 10px 0 10px 0;
-}
-#Contact { 
-	background-color: rgba(0, 0, 0, 0.5); 
-	border-radius: 20px;
-	width: 100%;
 	margin: 10px 0 10px 0;
 }
 #PlaylistContainer {
@@ -369,22 +335,4 @@ button:hover {
 .MusicSegment:hover .MusicDescription {
     bottom: 22.5px;
     opacity: 1;
-}
-#ContactUs {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-#ContactUs .Left, #ContactUs .Right {
-    display: flex;
-    align-items: center;
-}
-#ContactUs .Left {
-    flex: 1;
-}
-#ContactUs .Right {
-    flex: 1;
-}
-iframe {
-	background-color: rgb(72, 67, 77);
 }
